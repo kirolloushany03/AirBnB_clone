@@ -10,12 +10,12 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand class contains the entry point of the command interpreter"""
 
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     classes_list = ["BaseModel", "User", "State",
                     "City", "Amenity", "Place", "Review"]
 
-    def precmd(self, line):
-        """Runs before the onecmd and can help to handle special commands"""
+    def onecmd(self, line):
+        """Can help to handle special commands"""
 
         parts = re.findall("(.*)[.](.*)[(](.*)[)]", line)
         if parts:
@@ -25,25 +25,25 @@ class HBNBCommand(cmd.Cmd):
                     .replace(", ", " $from_dict$ ", 1).replace('"', "", 2)
             else:
                 arguments = arguments.replace(", ", " ").replace('"', "", 2)
-            return f"{command_name} {class_name} {arguments}"
+            return super().onecmd(f"{command_name} {class_name} {arguments}")
         else:
-            return line
+            return super().onecmd(line)
 
     def do_quit(self, *args):
         """Quit command to exit the program"""
-        exit()
+        return True
 
     def help_quit(self):
         """Quit command to exit the program"""
-        print("Quit command to exit the program")
+        print("Quit command to exit the program.")
 
     def do_EOF(self, *args):
-        """EOF command to exit the program"""
-        exit()
+        """EOF signal to exit the program"""
+        return True
 
     def help_EOF(self):
-        """EOF command to exit the program"""
-        print("EOF command to exit the program")
+        """EOF signal to exit the program"""
+        print("EOF signal to exit the program.")
 
     def emptyline(self):
         """Handle the emptyline"""
@@ -71,8 +71,8 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of\
             an instance based on the class name and id"""
         print(
-            "Prints the string representation of\
-                an instance based on the class name and id"
+            "Prints the string representation of "
+            "an instance based on the class name and id"
         )
 
     def do_destroy(self, args):
@@ -83,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
             del storage.all()[f"{args[0]}.{args[1]}"]
             storage.save()
 
-    def help_destroy(self, args):
+    def help_destroy(self):
         """Deletes an instance based on the class name and id"""
         print("Deletes an instance based on the class name and id")
 
@@ -102,8 +102,8 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of\
             all instances based or not on the class name"""
         print(
-            "Prints all string representation of\
-                all instances based or not on the class name"
+            "Prints all string representation of "
+            "all instances based or not on the class name"
         )
 
     def do_count(self, args):
@@ -123,8 +123,8 @@ class HBNBCommand(cmd.Cmd):
         """Prints the number of all string representation of\
             all instances based or not on the class name"""
         print(
-            "Prints the number of all string representation of\
-                all instances based or not on the class name"
+            "Prints the number of all string representation of "
+            "all instances based or not on the class name"
         )
 
     def do_update(self, args):
@@ -146,18 +146,17 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name\
             and id by adding or updating attribute"""
         print(
-            "Updates an instance based on the class name\
-                and id by adding or updating attribute"
+            "Updates an instance based on the class name "
+            "and id by adding or updating attribute"
         )
 
     def upadate_value(self, key, value, obj):
         """Update the attrbute of the object and save it"""
-        if key == "$from_dict$" and value.count("{"):
-            for key, value in loads(value.replace("'", '"')).items():
+        if key == "$from_dict$":
+            for key, value in eval(value).items():
                 setattr(obj, key, value)
         else:
-            setattr(obj, loads(key) if key[0] + key[-1] == '""'
-                    else key, loads(value))
+            setattr(obj, key, eval(value))
         obj.save()
 
     @staticmethod
