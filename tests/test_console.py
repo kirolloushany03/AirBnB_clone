@@ -51,7 +51,7 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_create(self):
-        h = ("create command to Creates a new instance and prints the id")
+        h = "create command to Creates a new instance and prints the id"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help create"))
             self.assertEqual(h, output.getvalue().strip())
@@ -63,8 +63,10 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_show(self):
-        h = ("Prints the string representation of "
-            "an instance based on the class name and id")
+        h = (
+            "Prints the string representation of "
+            "an instance based on the class name and id"
+        )
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help show"))
             self.assertEqual(h, output.getvalue().strip())
@@ -76,30 +78,36 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_all(self):
-        h = ("Prints all string representation of "
-            "all instances based or not on the class name")
+        h = (
+            "Prints all string representation of "
+            "all instances based or not on the class name"
+        )
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help all"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_count(self):
-        h = ("Prints the number of all string representation of "
-            "all instances based or not on the class name")
+        h = (
+            "Prints the number of all string representation of "
+            "all instances based or not on the class name"
+        )
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help count"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_update(self):
-        h = ("Updates an instance based on the class name \
-and id by adding or updating attribute")
+        h = "Updates an instance based on the class name \
+and id by adding or updating attribute"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help update"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help(self):
-        h = ("Documented commands (type help <topic>):\n"
-             "========================================\n"
-             "EOF  all  count  create  destroy  help  quit  show  update")
+        h = (
+            "Documented commands (type help <topic>):\n"
+            "========================================\n"
+            "EOF  all  count  create  destroy  help  quit  show  update"
+        )
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertEqual(h, output.getvalue().strip())
@@ -1295,7 +1303,8 @@ and id by adding or updating attribute")
     def test_count_invalid_class(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
-            self.assertEqual("** class doesn't exist **", output.getvalue().strip())
+            self.assertEqual("** class doesn't exist **",
+                             output.getvalue().strip())
 
     def test_count_object(self):
         with patch("sys.stdout", new=StringIO()) as output:

@@ -14,7 +14,7 @@ class test_basemodel(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         """ """
         super().__init__(*args, **kwargs)
-        self.name = 'BaseModel'
+        self.name = "BaseModel"
         self.value = BaseModel
 
     def setUp(self):
@@ -23,8 +23,8 @@ class test_basemodel(unittest.TestCase):
 
     def tearDown(self):
         try:
-            os.remove('file.json')
-        except:
+            os.remove("file.json")
+        except Exception:
             pass
 
     def test_default(self):
@@ -48,19 +48,19 @@ class test_basemodel(unittest.TestCase):
             new = BaseModel(**copy)
 
     def test_save(self):
-        """ Testing save """
+        """Testing save"""
         i = self.value()
         i.save()
         key = self.name + "." + i.id
-        with open('file.json', 'r') as f:
+        with open("file.json", "r") as f:
             j = json.load(f)
             self.assertEqual(j[key], i.to_dict())
 
     def test_str(self):
         """ """
         i = self.value()
-        self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
-                         i.__dict__))
+        self.assertEqual(str(i),
+                         "[{}] ({}) {}".format(self.name, i.id, i.__dict__))
 
     def test_todict(self):
         """ """
