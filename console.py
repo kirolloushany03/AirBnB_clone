@@ -91,10 +91,11 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of\
             all instances based or not on the class name"""
         if args in HBNBCommand.classes_list:
-            print([value for key, value in
+            print([str(value) for key, value in
                    storage.all().items() if key.count(args)])
         elif args == "":
-            print(list(storage.all().values()))
+            print([str(value) for key, value in
+                   storage.all().items()])
         else:
             print("** class doesn't exist **")
 
