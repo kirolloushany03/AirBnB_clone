@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""The module contains the class BaseModel\
-    which is the base class of the others"""
+"""The module contains the class BaseModel"""
 from uuid import uuid4
 from datetime import datetime
 from models import storage
