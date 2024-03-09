@@ -37,6 +37,7 @@ class FileStorage():
             return
         for key, value in json_dict.items():
             self.all()[key] = self.create_object(value["__class__"])(**value)
+
     @staticmethod
     def create_object(class_name):
         """Create an instance from a class name"""
@@ -48,7 +49,7 @@ class FileStorage():
         from models.place import Place
         from models.review import Review
 
-
-        class_dict = {"BaseModel": BaseModel, "User": User, "State":State,
-                      "City": City, "Amenity":Amenity, "Place":Place, "Review": Review}
+        class_dict = {"BaseModel": BaseModel, "User": User, "State": State,
+                      "City": City, "Amenity": Amenity, "Place": Place,
+                      "Review": Review}
         return class_dict[class_name]
