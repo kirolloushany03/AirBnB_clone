@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""this module for class amenity"""
+"""The module contains the class Amenity that inherits from BaseModel"""
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """class : Amenity to store more data"""
+    """The class Amenity that inherits from BaseModel"""
+
     name = ""

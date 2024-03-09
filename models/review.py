@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""this module for class review"""
+"""The module contains the class Review that inherits from BaseModel"""
 from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """class : review to store more data"""
+    """The class Review that inherits from BaseModel"""
+
     place_id = ""
     user_id = ""
     text = ""
