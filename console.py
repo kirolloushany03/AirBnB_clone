@@ -3,7 +3,7 @@
     the entry point of the command interpreter"""
 import cmd
 import re
-from json import loads
+from json import loads, dumps
 from models import storage
 
 
@@ -153,10 +153,10 @@ class HBNBCommand(cmd.Cmd):
     def upadate_value(self, key, value, obj):
         """Update the attrbute of the object and save it"""
         if key == "$from_dict$":
-            for key, value in eval(value).items():
+            for key, value in loads(value.replace("'", '"')).items():
                 setattr(obj, key, value)
         else:
-            setattr(obj, key, eval(value))
+            setattr(obj, key, loads(value.replace("'", '"')))
         obj.save()
 
     @staticmethod
