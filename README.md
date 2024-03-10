@@ -1,4 +1,4 @@
-Certainly! Here's the README with emojis and the contributors Kirollous Hany and Ashraf Atef:
+Certainly! Here's the updated README with the contributors Kirollous Hany and Ashraf Atef's GitHub usernames:
 
 ---
 
@@ -133,8 +133,8 @@ To get started with the project, follow these steps:
 
 ## Contributors
 
-- [Kirollous Hany](https://github.com/kirolloushany)
-- [Ashraf Atef](https://github.com/ashrafatefdev)
+- [Kirollous Hany (@kirolloushany03)](https://github.com/kirolloushany03)
+- [Ashraf Atef (@Ashraf-Atef1)](https://github.com/Ashraf-Atef1)
 
 ---
 
